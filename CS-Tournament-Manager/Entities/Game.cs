@@ -24,5 +24,5 @@ public class Game : IGame
     public Guid MatchId { get; set; }
     
     /// <inheritdoc />
-    public IMatch Match { get; set; } = null!;
+    public Match Match { get; set; } = null!;
 }

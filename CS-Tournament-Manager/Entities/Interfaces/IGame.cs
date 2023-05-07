@@ -6,5 +6,5 @@ public interface IGame : IMap
     int TeamTwoScore { get; set; }
     
     Guid MatchId { get; set; }
-    IMatch Match { get; set; }
+    Match Match { get; set; }
 }

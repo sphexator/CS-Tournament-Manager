@@ -14,11 +14,11 @@ public interface ITeam : INamedEntity
     /// Captain of the team.
     /// Null if captain mode is false.
     /// </summary>
-    IPlayer? Captain { get; set; }
+    Player? Captain { get; set; }
     /// <summary>
     /// List of players in the team.
     /// </summary>
-    List<IPlayer> Players { get; set; }
+    List<Player> Players { get; set; }
     
     Guid TournamentId { get; set; }
 }

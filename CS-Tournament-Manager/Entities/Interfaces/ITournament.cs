@@ -22,5 +22,5 @@ public interface ITournament : INamedEntity
     /// <summary>
     /// List of teams participating in the tournament
     /// </summary>
-    List<ITeam> Teams { get; set; }
+    List<Team> Teams { get; set; }
 }

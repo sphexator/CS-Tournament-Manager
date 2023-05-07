@@ -8,9 +8,9 @@ public class Match : IMatch
     public string Name { get; set; }
     public int TeamOneScore { get; set; }
     public int TeamTwoScore { get; set; }
-    public ITeam TeamOne { get; set; }
-    public ITeam TeamTwo { get; set; }
-    public ITeam? Winner { get; set; }
-    public List<IGame> Games { get; set; }
+    public Team TeamOne { get; set; }
+    public Team TeamTwo { get; set; }
+    public Team? Winner { get; set; }
+    public List<Game> Games { get; set; }
     public Guid TournamentId { get; set; }
 }
