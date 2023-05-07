@@ -1,4 +1,5 @@
-﻿using CS_Tournament_Manager.Handlers.TournamentHandlers;
+﻿using CS_Tournament_Manager.Entities;
+using CS_Tournament_Manager.Handlers.TournamentHandlers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,13 +23,15 @@ public class TournamentController : ControllerBase
     public async Task<IActionResult> Get(Guid id)
     {
         var result = await _mediator.Send(new GetSpecificTournament(id));
+        if (result is null) return NotFound();
         return Ok(result);
     }
     
     [HttpPost]
-    public async Task<IActionResult> Post()
+    public async Task<IActionResult> Post(Tournament tournament)
     {
-        var result = await _mediator.Send(new CreateTournament());
+        var result = await _mediator.Send(new CreateTournament(tournament));
+        if (result is null) return NotFound();
         return Ok(result);
     }
     
@@ -36,13 +39,15 @@ public class TournamentController : ControllerBase
     public async Task<IActionResult> Put(Guid id)
     {
         var result = await _mediator.Send(new UpdateTournament());
+        if (result is null) return NotFound();
         return Ok(result);
     }
     
     [HttpDelete("{id:Guid}")]
     public async Task<IActionResult> Delete(Guid id)
     {
-        await _mediator.Send(new DeleteTournament(id));
+        var result = await _mediator.Send(new DeleteTournament(id));
+        if (result is false) return BadRequest();
         return Ok();
     }
     
@@ -66,6 +71,7 @@ public class TournamentController : ControllerBase
     public async Task<IActionResult> GetMatch(Guid id, Guid matchId)
     {
         var result = await _mediator.Send(new GetMatchTournament(id, matchId));
+        if (result is null) return NotFound();
         return Ok(result);
     }
 }
