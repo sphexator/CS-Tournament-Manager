@@ -16,7 +16,6 @@ public class GetMatchTournamentHandler : IRequestHandler<GetMatchTournament, IMa
         var result = await _db.Matches.FindAsync(
             new object?[] { request.Id, request.TournamentId }, 
             cancellationToken: cancellationToken);
-        if (result is null) throw new NullReferenceException("Match not found");
         return result;
     }
 }

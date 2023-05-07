@@ -15,7 +15,6 @@ public class GetSpecificTournamentHandler : IRequestHandler<GetSpecificTournamen
     {
         var result = await _db.Tournaments.FindAsync(new object?[] { request.Id },
             cancellationToken: cancellationToken);
-        if(result is null) throw new NullReferenceException("Tournament not found");
         return result;
     }
 }
