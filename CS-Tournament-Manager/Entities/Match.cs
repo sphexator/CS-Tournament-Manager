@@ -8,6 +8,7 @@ public class Match : IMatch
     public string Name { get; set; }
     public int TeamOneScore { get; set; }
     public int TeamTwoScore { get; set; }
+    public DateTimeOffset StartTime { get; set; }
     public Team TeamOne { get; set; }
     public Team TeamTwo { get; set; }
     public Team? Winner { get; set; }

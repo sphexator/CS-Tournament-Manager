@@ -1,24 +1,25 @@
-﻿using CS_Tournament_Manager.Database;
+﻿using CS_Tournament_Manager.Entities;
 using CS_Tournament_Manager.Entities.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace CS_Tournament_Manager.Handlers.TournamentHandlers;
 
-public record GetMatchesTournament(Guid TournamentId, int PageNumber, int PageSize) : IRequest<List<IMatch>>;
+public record GetMatchesTournament(Guid TournamentId, int PageNumber, int PageSize) : IRequest<List<Match>>;
 
-public class GetMatchesTournamentHandler : IRequestHandler<GetMatchesTournament, List<IMatch>>
+public class GetMatchesTournamentHandler : IRequestHandler<GetMatchesTournament, List<Match>>
 {
-    private readonly DbService _db;
-    public GetMatchesTournamentHandler(DbService db) => _db = db;
+    private readonly IDbService _db;
+    public GetMatchesTournamentHandler(IDbService db) => _db = db;
 
-    public async Task<List<IMatch>> Handle(GetMatchesTournament request, CancellationToken cancellationToken)
+    public async Task<List<Match>> Handle(GetMatchesTournament request, CancellationToken cancellationToken)
     {
         var paginationSkip = (request.PageNumber - 1) * request.PageSize;
         var result = await _db.Matches.Where(x => x.TournamentId == request.TournamentId)
+            .OrderBy(x => x.StartTime)
             .Skip(paginationSkip)
             .Take(request.PageSize)
             .ToListAsync(cancellationToken);
-        return new List<IMatch>(result);
+        return result;
     }
 }

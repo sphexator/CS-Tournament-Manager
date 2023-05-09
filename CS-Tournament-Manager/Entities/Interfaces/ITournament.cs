@@ -3,6 +3,10 @@
 public interface ITournament : INamedEntity
 {
     /// <summary>
+    /// Time tournament was created
+    /// </summary>
+    DateTimeOffset CreatedAt { get; set; }
+    /// <summary>
     /// Tournament seed number - used to determine the order of teams in the tournament
     /// </summary>
     int Seed { get; set; }

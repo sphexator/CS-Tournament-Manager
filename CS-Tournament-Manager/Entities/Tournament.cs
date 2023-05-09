@@ -12,6 +12,9 @@ public class Tournament : ITournament
     public string Name { get; set; }
     
     /// <inheritdoc />
+    public DateTimeOffset CreatedAt { get; set; }
+    
+    /// <inheritdoc />
     public int Seed { get; set; }
 
     /// <inheritdoc />

@@ -4,6 +4,7 @@ public interface IMatch : INamedEntity
 {
     int TeamOneScore { get; set; }
     int TeamTwoScore { get; set; }
+    DateTimeOffset StartTime { get; set; }
     Team TeamOne { get; set; }
     Team TeamTwo { get; set; }
     Team? Winner { get; set; }
