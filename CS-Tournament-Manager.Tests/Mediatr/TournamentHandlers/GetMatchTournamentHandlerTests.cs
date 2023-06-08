@@ -1,5 +1,4 @@
-﻿using CS_Tournament_Manager.Entities;
-using CS_Tournament_Manager.Entities.Interfaces;
+﻿using CS_Tournament_Manager.Entities.Interfaces;
 using CS_Tournament_Manager.Handlers.TournamentHandlers;
 using Moq;
 using Moq.EntityFrameworkCore;
