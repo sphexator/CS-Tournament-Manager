@@ -1,5 +1,6 @@
 ﻿using CS_Tournament_Manager.Database;
 using CS_Tournament_Manager.Entities;
+using CS_Tournament_Manager.Entities.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,12 +10,12 @@ public record GetTeamsTournament(Guid Id) : IRequest<List<Team>>;
 
 public class GetTeamsTournamentHandler : IRequestHandler<GetTeamsTournament, List<Team>>
 {
-    private readonly DbService _db;
-    public GetTeamsTournamentHandler(DbService db) => _db = db;
+    private readonly IDbService _db;
+    public GetTeamsTournamentHandler(IDbService db) => _db = db;
 
-    public async Task<List<Team>> Handle(GetTeamsTournament request, CancellationToken cancellationToken)
-    {
-        var results = await _db.Teams.Where(x => x.TournamentId == request.Id).ToListAsync(cancellationToken);
-        return results;
-    }
+    public async Task<List<Team>> Handle(GetTeamsTournament request, CancellationToken cancellationToken) =>
+        await _db.Teams
+            .Where(x => x.TournamentId == request.Id)
+            .OrderBy(x => x.Name)
+            .ToListAsync(cancellationToken);
 }

@@ -6,6 +6,10 @@
 public interface ITeam : INamedEntity
 {
     /// <summary>
+    /// Time the team was created.
+    /// </summary>
+    DateTimeOffset CreatedAt { get; set; }
+    /// <summary>
     /// Whether the team is in captain mode or majority vote.
     /// True if captain mode, false if majority vote.
     /// </summary>
